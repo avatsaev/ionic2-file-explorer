@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{currentPath}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+
+  <div padding>
+    <ion-segment [(ngModel)]="mediaTypeFilter">
+
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+
+      <ion-segment-button value="images">
+        Pictures
+      </ion-segment-button>
+
+      <ion-segment-button value="videos">
+        Videos
+      </ion-segment-button>
+
+      <ion-segment-button value="music">
+        Music
+      </ion-segment-button>
+
+    </ion-segment>
+  </div>
+
+  <ion-list>
+
+    <ion-list-header>
+      Folders
+    </ion-list-header>
+
+
+    <!--<app-folder-item [folder]="fileList[3]"></app-folder-item>-->
+
+
+    <div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='images'" >
+
+      <ion-list-header>
+        Pictures
+      </ion-list-header>
+
+
+      <!--<app-media-item [media]="fileList[0]"></app-media-item>-->
+
+
+    </div>
+
+
+
+
+    <div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='music'">
+
+      <ion-list-header>
+        Music
+      </ion-list-header>
+
+      <!--<app-media-item [media]="fileList[2]"></app-media-item>-->
+
+
+
+
+    </div>
+
+
+    <div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='videos'">
+      <ion-list-header>
+        Videos
+      </ion-list-header>
+
+      <!--<app-media-item [media]="fileList[1]"></app-media-item>-->
+
+
+    </div>
+
+  </ion-list>
+
+</ion-content>
+

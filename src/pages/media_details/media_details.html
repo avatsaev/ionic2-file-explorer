@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{media.file_name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-card>
+    <ion-icon name="{{media.icon}}" [ngStyle]="{'font-size': '200px', 'margin': '20px auto', 'color': media.icon_color}" ></ion-icon>
+    <ion-card-content>
+      <ion-card-title>
+        {{media.file_name}}
+      </ion-card-title>
+
+    </ion-card-content>
+
+    <ion-item>
+      <button ion-button icon-left clear item-left>
+        <ion-icon name="play"></ion-icon>
+        Show
+      </button>
+      <button ion-button icon-left clear item-right>
+        <ion-icon name="heart"></ion-icon>
+        FAV
+      </button>
+    </ion-item>
+  </ion-card>
+
+
+
+
+</ion-content>

@@ -1,0 +1,9 @@
+<ion-item (click)="showDetails()">
+  <ion-avatar item-left>
+    <ion-icon name="{{media.icon}}" [ngStyle]="{'font-size': '52px', 'color': media.icon_color}" ></ion-icon>
+  </ion-avatar>
+
+  <h2>{{media.file_name}}</h2>
+
+  <p>{{media.metadata}}</p>
+</ion-item>
