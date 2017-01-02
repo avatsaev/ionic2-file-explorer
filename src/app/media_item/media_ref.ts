@@ -3,7 +3,7 @@ import {File} from 'ionic-native';
 
 export class MediaRef{
   path:string;
-  file_name:string;
+  name:string;
   ext:string;
   type:string;
   icon:string
@@ -12,10 +12,10 @@ export class MediaRef{
   metadata:any;
 
 
-  constructor(filename:string, type:string, metadata:string){
+  constructor(filename:string, type:string, path:string){
     this.type = type;
-    this.file_name = filename;
-    this.metadata = metadata;
+    this.name = filename;
+    this.path = path;
 
     switch (this.type){
 

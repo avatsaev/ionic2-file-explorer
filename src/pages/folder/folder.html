@@ -37,7 +37,7 @@
     </ion-list-header>
 
 
-    <!--<app-folder-item [folder]="fileList[3]"></app-folder-item>-->
+    <app-folder-item *ngFor="let item of getFolders()" [folder]="item"></app-folder-item>
 
 
     <div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='images'" >
@@ -47,7 +47,7 @@
       </ion-list-header>
 
 
-      <!--<app-media-item [media]="fileList[0]"></app-media-item>-->
+      <app-media-item *ngFor="let item of getImages()" [media]="item"></app-media-item>
 
 
     </div>

@@ -11,7 +11,7 @@ import {FolderPage} from "../folder/folder";
 export class HomePage {
 
   constructor(public navCtrl: NavController) {
-    this.navCtrl.setRoot(FolderPage, {path: '/'})
+    this.navCtrl.setRoot(FolderPage, {path: '.'})
   }
 
 }

@@ -4,19 +4,18 @@ import {File} from 'ionic-native';
 export class FolderRef{
 
   path:string;
-  file_name:string;
-  type:string;
+  name:string;
   icon:string
   icon_color:string;
-
+  type:string;
   metadata:any;
 
 
-  constructor(filename:string, type:string, path:string){
-    this.type = type;
-    this.file_name = filename;
-    this.path = path;
+  constructor(filename:string, path:string){
 
+    this.name = filename;
+    this.path = path;
+    this.type = 'folder'
     this.icon = 'ios-folder-outline';
     this.icon_color = '#487EED';
 

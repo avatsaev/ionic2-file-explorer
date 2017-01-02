@@ -1,48 +1,38 @@
 import { Injectable } from '@angular/core';
-import {File} from "ionic-native";
+import {File, Entry} from "ionic-native";
 import {Platform} from "ionic-angular";
 declare var cordova: any;
 
 @Injectable()
 export class FsProviderService {
 
+  fileSystem:string = cordova.file.dataDirectory;
+
   constructor() {
 
-    //
-    // {"isFile":false,"isDirectory":true,"name":"Documents","fullPath":"/./Documents/","filesystem":"<FileSystem:
-    //   files>","nativeURL":"file:///data/user/0/com.ionicframework.mediastudio787932/files/./Documents/"}
+  }
+
+
+  initFs(){
+    // File.checkDir(cordova.file.dataDirectory, './Media').then( (res) =>{
+    //   console.log(res)
+    //   // if (!res){
+    //   //   File.createDir(cordova.file.dataDirectory, "Media", false)
+    //   // }
+    // });
 
 
 
-
-        File.listDir(cordova.file.externalRootDirectory, '.').then(
-        (files) => {
-          // do something
-          console.log("FILES")
-
-          for(let file of files ){
-            console.log("..")
-            console.log(JSON.stringify(file));
-          }
-
-        }
-    ).catch(
-        (err) => {
-          console.log(JSON.stringify(err))
-          // do something
-        }
-    );
+    File.createFile(this.fileSystem, "test_file.txt", true).then(res => console.log(res));
+    File.createFile(this.fileSystem, "test_image_jpg", true).then(res => console.log(res));
+    File.createFile(this.fileSystem, "test_video_avi", true).then(res => console.log(res));
+    File.createFile(this.fileSystem, "test_audio_mp3", true).then(res => console.log(res));
   }
 
 
 
-  listDir(path:string){
-
-    File.listDir(cordova.externalRootDirectory, path).then( (res) => {
-      console.log(JSON.stringify(res));
-    })
-
-
+  listDir(path:string):Promise<Entry[]>{
+    return File.listDir(cordova.file.dataDirectory, path)
   }
 
 

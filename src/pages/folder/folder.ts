@@ -29,7 +29,7 @@ export class FolderPage {
   currentPath:string;
   //fs:string = cordova.file.dataDirectory;
 
-  fileList:Array<MediaRef | FolderRef>;
+  fileList:Array<MediaRef | FolderRef> = [];
 
   constructor(public navCtrl: NavController,
               private navParams:NavParams,
@@ -37,36 +37,33 @@ export class FolderPage {
               private fs:FsProviderService) {
 
     this.currentPath = navParams.get("path");
+    console.log("CURRENT PATH: "+this.currentPath)
 
 
+    fs.listDir(this.currentPath).then((files) => {
+      console.log("promise resolved");
+      for(let file of files){
+        console.log(JSON.stringify(file));
 
-    let fileA = new MediaRef("dd.png", "image", "metadata");
-    let fileB = new MediaRef("dd.mp4", "video", "metadata");
-    let fileC = new MediaRef("dd.mp3", "music", "metadata");
-    let fileD = new FolderRef("other", "folder", "/media/other/");
+        if(file.isDirectory){
+          this.fileList.push ( new FolderRef(file.name, file.fullPath.substring(1)))
+        }else{
+          this.fileList.push(new MediaRef(file.name, 'image', file.fullPath.substring(1)))
+        }
 
-    //fs.listDir('.');
+      }
+    });
 
-    this.fileList = [];
-
-
-    // console.log(cordova.file.externalRootDirectory);
-    // //cordova.file.externalRootDirectory
-    // File.listDir(cordova.file.applicationDirectory, "").then(
-    //     (files) => {
-    //       console.log(files)
-    //     }
-    // ).catch(
-    //     (err) => {
-    //       console.error(err);
-    //     }
-    // );
 
   }
 
 
   getFolders(){
-    return this.fileList.filter(item => item.type == 'folder');
+    return this.fileList.filter(item => item instanceof FolderRef);
+  }
+
+  getImages(){
+    return this.fileList.filter(item => item.type == 'image');
   }
 
 
