@@ -61,7 +61,7 @@
         Music
       </ion-list-header>
 
-      <!--<app-media-item [media]="fileList[2]"></app-media-item>-->
+      <app-media-item *ngFor="let item of getAudios()" [media]="item"></app-media-item>
 
 
 
@@ -74,7 +74,7 @@
         Videos
       </ion-list-header>
 
-      <!--<app-media-item [media]="fileList[1]"></app-media-item>-->
+      <app-media-item *ngFor="let item of getVideos()" [media]="item"></app-media-item>
 
 
     </div>

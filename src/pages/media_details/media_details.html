@@ -7,23 +7,64 @@
 <ion-content>
 
 
+
+
   <ion-card>
-    <ion-icon name="{{media.icon}}" [ngStyle]="{'font-size': '200px', 'margin': '20px auto', 'color': media.icon_color}" ></ion-icon>
+
+
     <ion-card-content>
       <ion-card-title>
-        {{media.file_name}}
+        {{media.name}}
       </ion-card-title>
+
+      <ion-item>
+        <div *ngIf="media.type=='music'">
+
+          <button  (click)="playMusic()" ion-button icon-left clear item-left>
+
+            <span *ngIf="mediaPlaying">
+              <ion-icon name="pause"></ion-icon>
+              Pause
+            </span>
+
+            <span *ngIf="!mediaPlaying">
+              <ion-icon name="play"></ion-icon>
+              Play
+            </span>
+          </button>
+
+
+
+        </div>
+
+        <div *ngIf="media.type=='video' ">
+
+          <button  (click)="playVideo()" ion-button icon-left clear item-left>
+            <ion-icon name="play"></ion-icon>
+            Play video
+          </button>
+
+
+        </div>
+
+        <div *ngIf="media.type=='image' ">
+
+          <button  (click)="openImage()" ion-button icon-left clear item-left>
+            <ion-icon name="ios-image"></ion-icon>
+            Show image
+          </button>
+
+
+        </div>
+      </ion-item>
 
     </ion-card-content>
 
     <ion-item>
-      <button ion-button icon-left clear item-left>
-        <ion-icon name="play"></ion-icon>
-        Show
-      </button>
+
       <button ion-button icon-left clear item-right>
         <ion-icon name="heart"></ion-icon>
-        FAV
+        Favorite
       </button>
     </ion-item>
   </ion-card>

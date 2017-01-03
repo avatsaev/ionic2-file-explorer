@@ -12,9 +12,9 @@ import {FsProviderService} from "./providers/fs_provider.service";
 export class MyApp {
   rootPage = TabsPage;
 
-  constructor(platform: Platform, fs:FsProviderService) {
+  constructor(platform: Platform, private fs:FsProviderService) {
     platform.ready().then(() => {
-      fs.initFs();
+      this.fs.initFs();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();

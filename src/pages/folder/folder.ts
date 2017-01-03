@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import {NavController, NavParams, Platform} from 'ionic-angular';
-import {File} from "ionic-native";
+import {NavParams} from 'ionic-angular';
+import {DirectoryEntry, FileEntry} from "ionic-native";
 import {MediaRef} from "../../app/media_item/media_ref";
 import {FolderRef} from "../../app/folder_item/folder_ref";
 import {FsProviderService} from "../../app/providers/fs_provider.service";
@@ -15,8 +15,6 @@ declare var cordova: any;
     ion-list-header{
       margin-top: 10px;
     }
-  
-
   `]
 })
 
@@ -27,34 +25,26 @@ export class FolderPage {
 
   mediaTypeFilter:string='all';
   currentPath:string;
-  //fs:string = cordova.file.dataDirectory;
 
   fileList:Array<MediaRef | FolderRef> = [];
 
-  constructor(public navCtrl: NavController,
-              private navParams:NavParams,
-              private platform:Platform,
+  constructor(private navParams:NavParams,
               private fs:FsProviderService) {
 
     this.currentPath = navParams.get("path");
-    console.log("CURRENT PATH: "+this.currentPath)
-
 
     fs.listDir(this.currentPath).then((files) => {
-      console.log("promise resolved");
+
       for(let file of files){
-        console.log(JSON.stringify(file));
 
         if(file.isDirectory){
-          this.fileList.push ( new FolderRef(file.name, file.fullPath.substring(1)))
+          this.fileList.push ( new FolderRef(file.name, file.fullPath.substring(1), file as DirectoryEntry))
         }else{
-          this.fileList.push(new MediaRef(file.name, 'image', file.fullPath.substring(1)))
+          this.fileList.push(new MediaRef(file.name, file.fullPath.substring(1), file as FileEntry))
         }
 
       }
     });
-
-
   }
 
 
@@ -65,6 +55,17 @@ export class FolderPage {
   getImages(){
     return this.fileList.filter(item => item.type == 'image');
   }
+
+  getVideos(){
+    return this.fileList.filter(item => item.type == 'video');
+  }
+
+  getAudios(){
+    return this.fileList.filter(item => item.type == 'music');
+  }
+
+
+
 
 
 
