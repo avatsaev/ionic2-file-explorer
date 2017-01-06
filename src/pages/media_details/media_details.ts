@@ -4,7 +4,7 @@ import {Component} from '@angular/core'
 import {MediaRef} from "../../app/media_item/media_ref";
 import {PhotoViewer} from 'ionic-native';
 
-import { Storage } from '@ionic/storage';
+import {FavoritesService} from "../../app/providers/favorites.service";
 
 declare var Media: any;
 
@@ -24,7 +24,7 @@ export class MediaDetails{
 
   constructor(
       private navParams:NavParams,
-      private storage:Storage
+      private favService:FavoritesService
   ){
 
     this.media = navParams.get("media") as MediaRef;
@@ -47,10 +47,12 @@ export class MediaDetails{
 
   favorite(){
 
-    this.storage.get('favs').then((favs) => {
-      if(!favs.includes(this.media.fileEntry.toURL())) favs.push(this.media.fileEntry.toURL());
-    })
+    this.favService.addFavorite(this.media);
 
+  }
+
+  isFavorited(){
+    return this.favService.isFavorited(this.media);
   }
 
 

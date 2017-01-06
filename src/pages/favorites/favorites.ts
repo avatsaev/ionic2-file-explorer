@@ -1,38 +1,24 @@
 import { Component } from '@angular/core';
-
-import { NavController } from 'ionic-angular';
-import {FsProviderService} from "../../app/providers/fs_provider.service";
-import {Storage} from "@ionic/storage";
 import {MediaRef} from "../../app/media_item/media_ref";
+import {Observable} from "rxjs";
+import {FavoritesService} from "../../app/providers/favorites.service";
+
+declare var cordova: any;
 
 @Component({
   selector: 'page-favorites',
   templateUrl: 'favorites.html'
-});
-
-declare var cordova: any;
+})
 
 export class FavoritesPage {
 
 
-  fileList:Array<MediaRef> = [];
+  fileList$:Observable<Array<MediaRef>> ;
 
-  constructor(public navCtrl: NavController, private fs:FsProviderService, private storage:Storage) {
+  mediaTypeFilter:string='all';
 
-
-    this.storage.get('favs').then(favs => {
-      console.log(favs);
-      for(let fav of favs){
-
-        this.fs.getFile(fav).then(file => {
-          console.log(file);
-        });
-
-      }
-    });
-
-
-
+  constructor(private favService:FavoritesService) {
+    this.fileList$ = this.favService.favoritesList$;
   }
 
 }

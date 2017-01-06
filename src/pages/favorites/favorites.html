@@ -1,11 +1,80 @@
-<ion-header>
+
+
+<ion-content>
+
   <ion-navbar>
     <ion-title>
       Favorites
     </ion-title>
   </ion-navbar>
-</ion-header>
 
-<ion-content padding>
+
+
+
+  <div padding>
+    <ion-segment [(ngModel)]="mediaTypeFilter">
+
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+
+      <ion-segment-button value="images">
+        Pictures
+      </ion-segment-button>
+
+      <ion-segment-button value="videos">
+        Videos
+      </ion-segment-button>
+
+      <ion-segment-button value="music">
+        Music
+      </ion-segment-button>
+
+    </ion-segment>
+  </div>
+
+  <ion-list>
+
+
+    <div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='images'" >
+
+      <ion-list-header>
+        Pictures
+      </ion-list-header>
+
+      <app-media-item *ngFor="let item of fileList$ | async" [media]="item"></app-media-item>
+
+    </div>
+
+
+
+
+    <!--<div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='music'">-->
+
+      <!---->
+      <!--<ion-list-header>-->
+        <!--Music-->
+      <!--</ion-list-header>-->
+
+      <!--<app-media-item *ngFor="let item of getAudios()" [media]="item"></app-media-item>-->
+
+
+
+
+    <!--</div>-->
+
+
+    <!--<div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='videos'">-->
+      <!--<ion-list-header>-->
+        <!--Videos-->
+      <!--</ion-list-header>-->
+
+      <!--<app-media-item *ngFor="let item of getVideos()" [media]="item"></app-media-item>-->
+
+
+    <!--</div>-->
+
+  </ion-list>
 
 </ion-content>
+

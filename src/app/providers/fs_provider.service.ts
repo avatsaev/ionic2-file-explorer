@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {File, Entry, FileEntry, DirectoryEntry} from "ionic-native";
+import {File, Entry, FileEntry} from "ionic-native";
 import { Platform } from 'ionic-angular';
 
 declare var cordova: any;
@@ -16,7 +16,13 @@ export class FsProviderService {
 
 
   getFile(path:string):Promise<FileEntry>{
-    return File.resolveDirectoryUrl(path).then(dir => {return File.getFile(dir, path, {create:false})});
+
+    return File.resolveDirectoryUrl(path).then(dir => {
+
+      return File.getFile(dir, path, {create:false})
+
+    });
+
   }
 
 

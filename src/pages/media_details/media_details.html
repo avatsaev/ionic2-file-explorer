@@ -7,11 +7,11 @@
 <ion-content>
 
   <ion-fab class="fad-bottom-btn" bottom right edge>
-    <button ion-fab color="danger" (click)="favorite()"><ion-icon name="ios-heart"></ion-icon></button>
+    <button ion-fab color="danger" (click)="favorite()">
+      <ion-icon *ngIf="isFavorited()" name="ios-heart"></ion-icon>
+      <ion-icon *ngIf="!isFavorited()" name="ios-heart-outline"></ion-icon>
+    </button>
   </ion-fab>
-
-
-
 
   <ion-card>
 
