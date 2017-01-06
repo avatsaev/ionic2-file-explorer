@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {MediaRef} from "../../app/media_item/media_ref";
 import {Observable} from "rxjs";
-import {FavoritesService} from "../../app/providers/favorites.service";
+import {FavoritesService} from "../../app/services/favorites.service";
 
 declare var cordova: any;
 

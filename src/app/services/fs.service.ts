@@ -5,7 +5,7 @@ import { Platform } from 'ionic-angular';
 declare var cordova: any;
 
 @Injectable()
-export class FsProviderService {
+export class FsService {
 
   private fileSystem:string = cordova.file.externalRootDirectory;
   //private transfer = new Transfer();

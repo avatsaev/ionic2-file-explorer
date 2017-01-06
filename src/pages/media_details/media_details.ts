@@ -1,10 +1,9 @@
 import {NavParams} from 'ionic-angular';
-import {StreamingMedia} from 'ionic-native';
+import {StreamingMedia, PhotoViewer} from 'ionic-native';
 import {Component} from '@angular/core'
 import {MediaRef} from "../../app/media_item/media_ref";
-import {PhotoViewer} from 'ionic-native';
 
-import {FavoritesService} from "../../app/providers/favorites.service";
+import {FavoritesService} from "../../app/services/favorites.service";
 
 declare var Media: any;
 

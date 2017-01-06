@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
+import {
+  ToastController,
+  AlertController,
+  LoadingController,
+  NavParams
+} from 'ionic-angular';
 
-import {NavParams} from 'ionic-angular';
-import {DirectoryEntry, FileEntry} from "ionic-native";
+import {DirectoryEntry, FileEntry, StreamingMedia} from "ionic-native";
 import {MediaRef} from "../../app/media_item/media_ref";
 import {FolderRef} from "../../app/folder_item/folder_ref";
-import {FsProviderService} from "../../app/providers/fs_provider.service";
-import {LoadingController} from 'ionic-angular';
-import {AlertController} from 'ionic-angular';
-import {StreamingMedia} from 'ionic-native';
-import { ToastController } from 'ionic-angular';
+import {FsService} from "../../app/services/fs.service";
+
+
 
 declare var cordova: any;
 
@@ -41,7 +44,7 @@ export class FolderPage {
   fileList:Array<MediaRef | FolderRef> = [];
 
   constructor(private navParams:NavParams,
-              private fs:FsProviderService,
+              private fs:FsService,
               private loadingCtrl: LoadingController,
               private alertCtrl:AlertController,
               private toastCtrl:ToastController) {

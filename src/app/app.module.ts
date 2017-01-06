@@ -8,10 +8,10 @@ import { AboutPage, TabsPage, FolderPage, MediaDetails,FavoritesPage  } from '..
 import {FolderItem} from "./folder_item/folder_item.component";
 import {MediaItem} from "./media_item/media_item.component";
 
-import {FsProviderService} from "./providers/fs_provider.service";
+import {FsService} from "./services/fs_provider.service";
 
 import { Storage } from '@ionic/storage';
-import {FavoritesService} from "./providers/favorites.service";
+import {FavoritesService} from "./services/favorites.service";
 
 
 @NgModule({
@@ -37,6 +37,6 @@ import {FavoritesService} from "./providers/favorites.service";
     FolderPage,
     MediaDetails
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, FsProviderService, Storage, FavoritesService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, FsService, Storage, FavoritesService]
 })
 export class AppModule {}
