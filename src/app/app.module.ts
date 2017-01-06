@@ -10,6 +10,8 @@ import {MediaItem} from "./media_item/media_item.component";
 
 import {FsProviderService} from "./providers/fs_provider.service";
 
+import { Storage } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,6 @@ import {FsProviderService} from "./providers/fs_provider.service";
     FolderPage,
     MediaDetails
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, FsProviderService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, FsProviderService, Storage]
 })
 export class AppModule {}

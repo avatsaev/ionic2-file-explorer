@@ -6,10 +6,15 @@
 
 <ion-content>
 
+  <ion-fab margin-bottom="100px" top right edge>
+    <button ion-fab (click)="openRemoteDialog()"><ion-icon name="ios-link"></ion-icon></button>
+  </ion-fab>
+
+
 
 
   <div padding>
-    <ion-segment [(ngModel)]="mediaTypeFilter">
+    <ion-segment margin-top="20px" [(ngModel)]="mediaTypeFilter">
 
       <ion-segment-button value="all">
         All

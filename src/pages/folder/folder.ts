@@ -5,7 +5,10 @@ import {DirectoryEntry, FileEntry} from "ionic-native";
 import {MediaRef} from "../../app/media_item/media_ref";
 import {FolderRef} from "../../app/folder_item/folder_ref";
 import {FsProviderService} from "../../app/providers/fs_provider.service";
-import { LoadingController } from 'ionic-angular';
+import {LoadingController} from 'ionic-angular';
+import {AlertController} from 'ionic-angular';
+import {StreamingMedia} from 'ionic-native';
+import { ToastController } from 'ionic-angular';
 
 declare var cordova: any;
 
@@ -16,6 +19,13 @@ declare var cordova: any;
     ion-list-header{
       margin-top: 10px;
     }
+       
+    ion-toast.error .toast-wrapper {
+	    background: rgb(209, 71, 71) !important;
+    }
+    
+    
+    
   `]
 })
 
@@ -23,6 +33,7 @@ export class FolderPage {
 
   mediaTypeFilter:string='all';
   currentPath:string;
+
   loader = this.loadingCtrl.create({
     content: "Please wait..."
   });
@@ -31,7 +42,9 @@ export class FolderPage {
 
   constructor(private navParams:NavParams,
               private fs:FsProviderService,
-              private loadingCtrl: LoadingController) {
+              private loadingCtrl: LoadingController,
+              private alertCtrl:AlertController,
+              private toastCtrl:ToastController) {
 
     this.currentPath = navParams.get("path");
 
@@ -73,6 +86,58 @@ export class FolderPage {
 
   getAudios(){
     return this.fileList.filter(item => item.type == 'music');
+  }
+
+  openRemoteDialog(){
+
+    let prompt = this.alertCtrl.create({
+      title: 'Open URL',
+      message: "Enter a link to the remote resource (ex: http://example.com/my-file.mp3)",
+      inputs: [
+        {
+          name: 'URL',
+          placeholder: 'http://...'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Open',
+          handler: data => {
+            const url = data.URL;
+            const ext = url.substr(url.lastIndexOf('.') + 1);
+
+            if(ext == "mp4" || ext == "avi") {
+
+              StreamingMedia.playVideo(data);
+
+            }else if(ext == "mp3" || ext == "wav") {
+
+              StreamingMedia.playAudio(data);
+
+            }else{
+
+              this.toastCtrl.create({
+                message: 'Unknown file format',
+                position: 'bottom',
+                cssClass: 'error',
+                showCloseButton: true,
+                //duration: 4000
+              }).present();
+
+            }
+
+          }
+        }
+      ]
+    });
+    prompt.present();
+
   }
 
 

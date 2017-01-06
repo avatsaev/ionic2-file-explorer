@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {File, Entry} from "ionic-native";
+import {File, Entry, FileEntry, DirectoryEntry} from "ionic-native";
 import { Platform } from 'ionic-angular';
 
 declare var cordova: any;
@@ -12,29 +12,11 @@ export class FsProviderService {
 
   constructor(private pl:Platform) {
 
-
-    //console.log("--------");
-    //console.log(cordova.file);
   }
 
 
-  initFs(){
-
-    //File.createDir(this.fileSystem, "Media", true);
-
-    // this.transfer.onProgress((e) => {
-    //   console.log(e)
-    // });
-    //
-    //
-    //
-    // this.transfer.download("http://i.imgur.com/hevUEZp.png", this.fileSystem + '/Media/file.png').then((entry) => {
-    //   console.log('download complete: ' + entry.toURL());
-    // }, (error) => {
-    //   // handle error
-    //   console.log(error)
-    // });
-
+  getFile(path:string):Promise<FileEntry>{
+    return File.resolveDirectoryUrl(path).then(dir => {return File.getFile(dir, path, {create:false})});
   }
 
 
