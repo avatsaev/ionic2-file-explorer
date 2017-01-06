@@ -5,6 +5,7 @@ import {DirectoryEntry, FileEntry} from "ionic-native";
 import {MediaRef} from "../../app/media_item/media_ref";
 import {FolderRef} from "../../app/folder_item/folder_ref";
 import {FsProviderService} from "../../app/providers/fs_provider.service";
+import { LoadingController } from 'ionic-angular';
 
 declare var cordova: any;
 
@@ -18,22 +19,25 @@ declare var cordova: any;
   `]
 })
 
-
-
-
 export class FolderPage {
 
   mediaTypeFilter:string='all';
   currentPath:string;
+  loader = this.loadingCtrl.create({
+    content: "Please wait..."
+  });
 
   fileList:Array<MediaRef | FolderRef> = [];
 
   constructor(private navParams:NavParams,
-              private fs:FsProviderService) {
+              private fs:FsProviderService,
+              private loadingCtrl: LoadingController) {
 
     this.currentPath = navParams.get("path");
 
     if(!this.currentPath) this.currentPath = ".";
+
+    this.loader.present();
 
     fs.listDir(this.currentPath).then((files) => {
 
@@ -46,6 +50,11 @@ export class FolderPage {
         }
 
       }
+
+      this.loader.dismissAll()
+    }).catch((err)=>{
+      console.error(err);
+      this.loader.dismissAll();
     });
   }
 
@@ -65,10 +74,6 @@ export class FolderPage {
   getAudios(){
     return this.fileList.filter(item => item.type == 'music');
   }
-
-
-
-
 
 
 }
