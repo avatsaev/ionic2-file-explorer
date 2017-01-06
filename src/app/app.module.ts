@@ -8,7 +8,7 @@ import { AboutPage, TabsPage, FolderPage, MediaDetails,FavoritesPage  } from '..
 import {FolderItem} from "./folder_item/folder_item.component";
 import {MediaItem} from "./media_item/media_item.component";
 
-import {FsService} from "./services/fs_provider.service";
+import {FsService} from "./services/fs.service";
 
 import { Storage } from '@ionic/storage';
 import {FavoritesService} from "./services/favorites.service";
