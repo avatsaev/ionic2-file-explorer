@@ -21,4 +21,16 @@ export class FavoritesPage {
     this.fileList$ = this.favService.favoritesList$;
   }
 
+  getImages(){
+    return this.fileList$.map( files => files.filter(file => file.type == 'image'));
+  }
+
+  getVideos(){
+    return this.fileList$.map( files => files.filter(file => file.type == 'video'));
+  }
+
+  getAudios(){
+    return this.fileList$.map( files => files.filter(file => file.type == 'music'));
+  }
+
 }

@@ -42,37 +42,37 @@
         Pictures
       </ion-list-header>
 
-      <app-media-item *ngFor="let item of fileList$ | async" [media]="item"></app-media-item>
+      <app-media-item *ngFor="let item of getImages() | async" [media]="item"></app-media-item>
 
     </div>
 
 
 
 
-    <!--<div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='music'">-->
-
-      <!---->
-      <!--<ion-list-header>-->
-        <!--Music-->
-      <!--</ion-list-header>-->
-
-      <!--<app-media-item *ngFor="let item of getAudios()" [media]="item"></app-media-item>-->
+    <div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='music'">
 
 
+      <ion-list-header>
+        Music
+      </ion-list-header>
+
+      <app-media-item *ngFor="let item of getAudios() | async" [media]="item"></app-media-item>
 
 
-    <!--</div>-->
 
 
-    <!--<div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='videos'">-->
-      <!--<ion-list-header>-->
-        <!--Videos-->
-      <!--</ion-list-header>-->
-
-      <!--<app-media-item *ngFor="let item of getVideos()" [media]="item"></app-media-item>-->
+    </div>
 
 
-    <!--</div>-->
+    <div *ngIf="mediaTypeFilter=='all' || mediaTypeFilter=='videos'">
+      <ion-list-header>
+        Videos
+      </ion-list-header>
+
+      <app-media-item *ngFor="let item of getVideos() | async" [media]="item"></app-media-item>
+
+
+    </div>
 
   </ion-list>
 

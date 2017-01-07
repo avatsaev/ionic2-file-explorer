@@ -39,11 +39,4 @@
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
   <plugin name="cordova-sqlite-storage" spec="~2.0.0"/>
   <plugin name="cordova-plugin-file" spec="~4.3.1"/>
-  <allow-navigation href="http://192.168.43.254:8000"/>
-  <allow-navigation href="http://192.168.0.11:8000"/>
-  <allow-navigation href="http://172.20.10.4:8000"/>
-  <allow-navigation href="http://172.18.31.91:8000"/>
-  <allow-navigation href="http://192.168.43.147:8000"/>
-  <allow-navigation href="http://172.20.10.4:8001"/>
-  <allow-navigation href="http://192.168.1.41:8000"/>
 </widget>
