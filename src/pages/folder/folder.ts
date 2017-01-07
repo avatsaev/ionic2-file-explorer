@@ -6,7 +6,7 @@ import {
   NavParams
 } from 'ionic-angular';
 
-import {DirectoryEntry, FileEntry, StreamingMedia} from "ionic-native";
+import {DirectoryEntry, FileEntry, StreamingMedia, StreamingVideoOptions} from "ionic-native";
 import {MediaRef} from "../../app/media_item/media_ref";
 import {FolderRef} from "../../app/folder_item/folder_ref";
 import {FsService} from "../../app/services/fs.service";
@@ -104,24 +104,30 @@ export class FolderPage {
       ],
       buttons: [
         {
-          text: 'Cancel',
-          handler: data => {
-            console.log('Cancel clicked');
-          }
+          text: 'Cancel'
         },
         {
           text: 'Open',
           handler: data => {
+
             const url = data.URL;
+
+
+            let options: StreamingVideoOptions = {
+              successCallback: () => {  },
+              errorCallback: (e) => { console.log('Error streaming', e) },
+              orientation: 'landscape'
+            };
+
             const ext = url.substr(url.lastIndexOf('.') + 1);
 
             if(ext == "mp4" || ext == "avi") {
 
-              StreamingMedia.playVideo(data);
+              StreamingMedia.playVideo(url, options);
 
             }else if(ext == "mp3" || ext == "wav") {
 
-              StreamingMedia.playAudio(data);
+              StreamingMedia.playAudio(url, options);
 
             }else{
 
@@ -130,7 +136,7 @@ export class FolderPage {
                 position: 'bottom',
                 cssClass: 'error',
                 showCloseButton: true,
-                //duration: 4000
+                duration: 3000
               }).present();
 
             }

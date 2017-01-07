@@ -39,4 +39,5 @@
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
   <plugin name="cordova-sqlite-storage" spec="~2.0.0"/>
   <plugin name="cordova-plugin-file" spec="~4.3.1"/>
+  <allow-navigation href="http://192.168.1.41:8000"/>
 </widget>
