@@ -112,7 +112,6 @@ export class FolderPage {
 
             const url = data.URL;
 
-
             let options: StreamingVideoOptions = {
               successCallback: () => {  },
               errorCallback: (e) => { console.log('Error streaming', e) },
