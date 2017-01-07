@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import {AppVersion} from 'ionic-native';
 
-import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-about',
@@ -8,7 +8,13 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController) {
+  versionCode;
+  versionNum;
+
+  constructor() {
+
+    AppVersion.getVersionCode().then( res => this.versionCode = res);
+    AppVersion.getVersionNumber().then( res => this.versionNum = res);
 
   }
 

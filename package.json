@@ -2,6 +2,7 @@
   "name": "media-studio",
   "author": "Aslan Vatsaev (@avatsaev)",
   "homepage": "http://ionicframework.com/",
+  "verion": "0.1.1-alpha1",
   "private": true,
   "scripts": {
     "ionic:build": "ionic-app-scripts build",
