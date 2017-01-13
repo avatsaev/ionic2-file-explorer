@@ -31,23 +31,13 @@ export class FavoritesService {
         let fileName = fav.split("/").pop();
 
         File.resolveDirectoryUrl(dir)
-            .then( dirEntry => File.getFile(dirEntry, fileName, {create: false})
-            .then( file => {
-                  this.appFavs.push(
-                      new MediaRef(
-                          file.name,
-                          file.fullPath.substring(1),
-                          file as FileEntry)
-                  );
-                })
-            )
-
+            .then( dirEntry => File.getFile(dirEntry, fileName, {create: false}))
+            .then( file =>  this.appFavs.push( new MediaRef( file as FileEntry)))
       }
 
     });
 
   }
-
 
   addFavorite(media:MediaRef){
 

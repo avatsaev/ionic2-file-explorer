@@ -12,10 +12,12 @@ export class FolderRef{
   directoryEntry:DirectoryEntry;
 
 
-  constructor(filename:string, path:string, dir:DirectoryEntry){
+  constructor(dir:DirectoryEntry){
+
     this.directoryEntry = dir;
-    this.name = filename;
-    this.path = path;
+
+    this.name = this.directoryEntry.name;
+    this.path = this.directoryEntry.fullPath.substring(1);
     this.type = 'folder'
     this.icon = 'ios-folder-outline';
     this.icon_color = '#487EED';

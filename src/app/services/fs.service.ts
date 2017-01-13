@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {File, Entry, FileEntry} from "ionic-native";
-import { Platform } from 'ionic-angular';
+
 
 declare var cordova: any;
 
@@ -8,12 +8,8 @@ declare var cordova: any;
 export class FsService {
 
   private fileSystem:string = cordova.file.externalRootDirectory;
-  //private transfer = new Transfer();
 
-  constructor(private pl:Platform) {
-
-  }
-
+  constructor() {}
 
   getFile(path:string):Promise<FileEntry>{
 
@@ -26,11 +22,8 @@ export class FsService {
   }
 
 
-
   listDir(path:string):Promise<Entry[]>{
     return File.listDir(this.fileSystem, path)
   }
-
-
 
 }

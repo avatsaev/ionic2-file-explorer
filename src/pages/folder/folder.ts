@@ -60,9 +60,9 @@ export class FolderPage {
       for(let file of files){
 
         if(file.isDirectory){
-          this.fileList.push ( new FolderRef(file.name, file.fullPath.substring(1), file as DirectoryEntry) )
+          this.fileList.push ( new FolderRef(file as DirectoryEntry) )
         }else{
-          this.fileList.push( new MediaRef(file.name, file.fullPath.substring(1), file as FileEntry) )
+          this.fileList.push( new MediaRef(file as FileEntry) )
         }
 
       }

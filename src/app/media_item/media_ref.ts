@@ -14,11 +14,11 @@ export class MediaRef{
   extension:string;
 
 
-  constructor(filename:string, path:string, file:FileEntry){
+  constructor(file:FileEntry){
 
-    this.name = filename;
-    this.path = path;
     this.fileEntry = file;
+    this.name = this.fileEntry.name;
+    this.path = this.fileEntry.fullPath.substring(1);
 
     this.extension = this.name.substr(this.name.lastIndexOf('.') + 1);
 
@@ -26,13 +26,6 @@ export class MediaRef{
     else if(this.extension == "mp4" || this.extension == "avi") this.type = "video";
     else if(this.extension == "mp3" || this.extension == "wav") this.type = "music";
     else this.type  = "other";
-
-    // this.fileEntry.file((f) => {
-    //   console.log(f);
-    // });
-
-    //this.type = this.fileEntry.file.type;
-
 
     switch (this.type){
 
